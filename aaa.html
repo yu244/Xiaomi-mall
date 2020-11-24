@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"> 
+<title>菜鸟教程(runoob.com)</title> 
+
+<style> 
+.round{
+  font: 14px/1.5 Helvetica Neue,Helvetica,Arial,Microsoft Yahei,Hiragino Sans GB,Heiti SC,WenQuanYi Micro Hei,sans-serif;
+  font-size: 21px;
+  color: #ef3a3b;
+  padding-top: 15px;
+  text-align: center;
+  width: 168px;
+  padding-bottom: 15px;
+}
+.count-down{
+  width: 168px;
+  height: 46px;
+  text-align: center;
+
+}
+.count-down span{
+  width: 46px;
+  height: 46px;
+  background: #605751;
+  color: #fff;
+  font-size: 24px;
+  line-height: 46px;
+  float: left;
+  text-align: center;
+}
+i{
+  width: 15px;
+  float: left;
+  height: 46px;
+  line-height: 46px;
+  color: #605751;
+  font-size: 28px;
+  font-style: normal;
+  text-align: center;
+}
+</style>
+</head>
+<body>
+<div class="round">
+  00:00 场
+</div>
+<div class="count-down">
+  <span>00</span>
+  <i>:</i>
+  <span>00</span>
+  <i>:</i>
+  <span>00</span>
+</div>
+<script>
+  function countTime(){
+    let round = document.getElementsByClassName('round');
+    let nowDate = new Date();
+    let now = nowDate.getHours();
+    let hour = Math.floor(now/2)*2
+    document.getElementsByClassName('round')[0].innerHTML= hour + ":00 场";
+  }
+
+  function demo1() {
+    let countDown = document.getElementsByClassName('count-down');
+    let countDownSpan = countDown[0].getElementsByTagName('span');
+    let nowDate = new Date();
+    let nowHour = nowDate.getHours();
+    let nowMinute = nowDate.getMinutes();
+    let nowSecond = nowDate.getSeconds();
+    const twoHours = 7200;
+    let hourToSecond = nowHour*60*60;
+    let minuteToSecond = nowMinute*60;
+    let totalMilliseconds = hourToSecond + minuteToSecond + nowSecond;
+    let leftSeconds = twoHours - (totalMilliseconds%7200);
+    second = leftSeconds%60;
+    minute = parseInt(leftSeconds/60)%60;
+    hour = parseInt(leftSeconds/60/60);
+    if(minute < 10 ) {
+      minute = '0' + minute
+    }
+    if(second < 10) {
+      second = '0' + second
+    }
+    countDownSpan[0].innerHTML = '0' + hour;
+    countDownSpan[1].innerHTML = minute;
+    countDownSpan[2].innerHTML = second;
+  }
+  // setInterval(() => {
+  //   countTime();
+  //   demo1();
+  // }, 1000)
+</script>
+</body>
+</html>
